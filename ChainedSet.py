@@ -4,3 +4,4 @@ class ChainedSet:
         self.head = head #corrisponde al rappresentante
         self.tail = tail #corrisponde alla coda
         head.setPtr = self
+
