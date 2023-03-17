@@ -1,8 +1,17 @@
 from SetElement import *
 from Graph import *
+from random import *
+import matplotlib.pyplot as plt
+from timeit import default_timer as timer
 
 
-def union(x, y):
+def heuristic_union(x,y):
+    if x.setPtr.size < y.setPtr.size:
+        union(y, x) #accodo l'insieme di x a quello di y
+    else:
+        union(x, y) #accodo l'insieme di y a quello di x
+
+def union(x, y): #accodo l'insieme di y a quello di x
     if x.setPtr is None:
         x.make_set()
     if y.setPtr is None:
@@ -10,6 +19,7 @@ def union(x, y):
     if x.find_set() != y.find_set():
         tmp = y.find_set()  # primo elemento della lista che sposterò
         app = x.find_set()
+        x.setPtr.size += y.setPtr.size #attributo size aggiornato
         while app.nextPtr is not None:
             app = app.nextPtr
         app.nextPtr = tmp  # collego l'ultimo elemento della lista di x con il primo della lista di y
@@ -34,30 +44,16 @@ def same_components(u,v):
     else:
         return False
 
-"""a = SetElement()
-b = SetElement('b')
-c = SetElement('c')
-d = SetElement('d')
-e = SetElement('a')
+n = 10
 
-union(a,d)
-union(a,c)
-union(c,c)
+G = Graph(n)
 
-tmp = d.find_set()
-while tmp is not None:
-    print(tmp.value)
-    tmp = tmp.nextPtr"""
-
-G = Graph(6)
-
-G.edgeInsert(G.adj[0], G.adj[1])
-G.edgeInsert(G.adj[2], G.adj[4])
-G.edgeInsert(G.adj[3], G.adj[0])
-G.edgeInsert(G.adj[1], G.adj[2])
-G.edgeInsert(G.adj[2], G.adj[0])
-
+for i in range(0, randint(0, int(n*(n-1)/2))): #randomizzo numero degli archi (da 0 a nMax = n*(n-1)/2)
+    G.edgeInsert(G.adj[randint(0, n-1)], G.adj[randint(0, n-1)])
 G.printGraph()
 
+start = timer()
 connected_components(G)
+end = timer()
+#devo fare un array dei tempi e disegnare i grafici
 

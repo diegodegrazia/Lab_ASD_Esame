@@ -9,11 +9,17 @@ class Graph:
             self.adj[i].listPtr = []
 
     def edgeInsert(self, u, v): #Doppio inserimento perchè il grafo non è diretto
-        self.adj[u.value].listPtr.append(v) #non c'è controllo sull'esistenza dell'arco
-        self.adj[v.value].listPtr.append(u)
+        if not self.edge_check(u, v) and u != v:
+            self.adj[u.value].listPtr.append(v) #non c'è controllo sull'esistenza dell'arco
+            self.adj[v.value].listPtr.append(u)
+
+    def edge_check(self, u, v):
+        return v in self.adj[u.value].listPtr
+
 
     def printGraph(self):
         for i in self.adj:
-            print("Vertices adjacent to vertex ", i.value, ": ")
+            print_string = ""
             for j in i.listPtr:
-                print(j.value, "")
+                print_string += "-> " + str(j.value)
+            print("Vertices adjacent to vertex ", i.value, ": ", print_string)
