@@ -1,6 +1,7 @@
 from SetElement import *
 from Graph import *
 
+
 def union(x, y):
     if x.setPtr is None:
         x.make_set()
@@ -18,12 +19,22 @@ def union(x, y):
     else:
         print("Errore: I due insiemi non sono disgiunti")
 
-"""def connected_components(G):
+
+def connected_components(G):
     for v in G.adj:
         v.make_set()
-        
+    for i in G.adj:
+        for j in i.listPtr:
+            if i.find_set() != j.find_set():
+                union(i,j)
 
-a = SetElement('a')
+def same_components(u,v):
+    if u.find_set() == v.find_set():
+        return True
+    else:
+        return False
+
+"""a = SetElement()
 b = SetElement('b')
 c = SetElement('c')
 d = SetElement('d')
@@ -36,12 +47,17 @@ union(c,c)
 tmp = d.find_set()
 while tmp is not None:
     print(tmp.value)
-    tmp = tmp.nextPtr """
+    tmp = tmp.nextPtr"""
 
 G = Graph(6)
-G.edgeInsert(0,1)
-G.edgeInsert(2,4)
-G.edgeInsert(3,0)
-G.edgeInsert(1,2)
-G.edgeInsert(2,0)
+
+G.edgeInsert(G.adj[0], G.adj[1])
+G.edgeInsert(G.adj[2], G.adj[4])
+G.edgeInsert(G.adj[3], G.adj[0])
+G.edgeInsert(G.adj[1], G.adj[2])
+G.edgeInsert(G.adj[2], G.adj[0])
+
 G.printGraph()
+
+connected_components(G)
+
