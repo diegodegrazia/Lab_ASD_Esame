@@ -1,6 +1,3 @@
-from SetElement import SetElement
-
-class Node(SetElement):
+class Node:
     def __init__(self, value):
-        SetElement.__init__(self, value)
-        self.listPtr = None
+        self.value = value

@@ -1,15 +1,15 @@
 from ChainedSet import *
+from Node import *
 
-class SetElement:
-
+class ChainedNode(Node):
     def __init__(self, value):
-        self.value = value
+        Node.__init__(self, value)
         self.nextPtr = None
         self.setPtr = None
 
-    def make_set(self):
+    def makeSet(self):
         a = ChainedSet(self, self)
         return a
 
-    def find_set(self):
+    def findSet(self):
         return self.setPtr.head
