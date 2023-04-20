@@ -33,9 +33,9 @@ class Graph:
 
     def heuristicUnion(self, x, y):
         if x.setPtr.size < y.setPtr.size:
-            self.union(y, x)  # accodo l'insieme di x a quello di y
+            self.chainedUnion(y, x)  # accodo l'insieme di x a quello di y
         else:
-            self.union(x, y)  # accodo l'insieme di y a quello di x
+            self.chainedUnion(x, y)  # accodo l'insieme di y a quello di x
 
     def union(self, x, y):  # accodo l'insieme di y a quello di x
         if self.type == "ChainedNode":

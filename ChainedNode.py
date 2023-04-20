@@ -8,8 +8,7 @@ class ChainedNode(Node):
         self.setPtr = None
 
     def makeSet(self):
-        a = ChainedSet(self, self)
-        return a
+        ChainedSet(self, self)
 
     def findSet(self):
         return self.setPtr.head
