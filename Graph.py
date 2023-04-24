@@ -48,18 +48,15 @@ class Graph:
             x.makeSet()
         if y.setPtr is None:
             y.makeSet()
-        if x.findSet() != y.findSet():
-            tmp = y.findSet()  # primo elemento della lista che sposterò
-            app = x.findSet()
-            x.setPtr.size += y.setPtr.size  # attributo size aggiornato
-            while app.nextPtr is not None:
-                app = app.nextPtr
-            app.nextPtr = tmp  # collego l'ultimo elemento della lista di x con il primo della lista di y
-            while tmp is not None:  # scorro la lista di y per aggiornare i setPtr
-                tmp.setPtr = x.setPtr
-                tmp = tmp.nextPtr
-        else:
-            print("Errore: I due insiemi non sono disgiunti")
+        tmp = y.findSet()  # primo elemento della lista che sposterò
+        app = x.findSet()
+        x.setPtr.size += y.setPtr.size  # attributo size aggiornato
+        while app.nextPtr is not None:
+            app = app.nextPtr
+        app.nextPtr = tmp  # collego l'ultimo elemento della lista di x con il primo della lista di y
+        while tmp is not None:  # scorro la lista di y per aggiornare i setPtr
+            tmp.setPtr = x.setPtr
+            tmp = tmp.nextPtr
 
     def treeUnion(self, x, y):
         tmp = y.findSet()

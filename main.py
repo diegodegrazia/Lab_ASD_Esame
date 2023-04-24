@@ -35,7 +35,7 @@ executionTimeMyGraphH = []
 executionTimeMyGraph_2 = []
 x = []
 
-for i in range(1, 500):
+for i in range(1, 300):
     myGraph = Graph(i, "ChainedNode")  # concatenato senza euristica
     myGraphH = Graph(i, "ChainedNode")  # concatenato con euristica
     myGraph_2 = Graph(i, "TreeNode")  # foresta con compressione
@@ -60,12 +60,11 @@ for i in range(1, 500):
     gc.collect()
     print(i)
 
-
 plt.plot(x, executionTimeMyGraph)
 plt.plot(x, executionTimeMyGraphH)
 plt.plot(x, executionTimeMyGraph_2)
-plt.xlabel("vertices number")
-plt.ylabel("execution time")
-plt.title("Execution times")
-plt.legend(["Chained connected components", "Heuristic Chained connected components", "Forest connected components"])
+plt.xlabel("Numero di vertici")
+plt.ylabel("Tempo di esecuzione")
+plt.title("Andamento asintotico")
+plt.legend(["Componenti connesse con liste", "Componenti connesse con liste ed euristica UP", "Componenti connesse con foresta ed euristica CC"])
 plt.show()
