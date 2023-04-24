@@ -35,7 +35,7 @@ executionTimeMyGraphH = []
 executionTimeMyGraph_2 = []
 x = []
 
-for i in range(1, 300):
+for i in range(1, 600):
     myGraph = Graph(i, "ChainedNode")  # concatenato senza euristica
     myGraphH = Graph(i, "ChainedNode")  # concatenato con euristica
     myGraph_2 = Graph(i, "TreeNode")  # foresta con compressione
@@ -58,7 +58,6 @@ for i in range(1, 300):
     executionTimeMyGraph_2.append(end_2 - start_2)  # lista con tempi di esecuzione, per ogni iterazione, di ConnectedComponents (foresta con compressione)
     x.append(i)
     gc.collect()
-    print(i)
 
 plt.plot(x, executionTimeMyGraph)
 plt.plot(x, executionTimeMyGraphH)
